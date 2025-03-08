@@ -1,119 +1,165 @@
-document.addEventListener("DOMContentLoaded", function() {
-  let postContent = document.querySelector(".post-content");
-  if (!postContent) return;
+document.addEventListener("DOMContentLoaded", function () {
+  let selectedStars = 0;
+  const scriptURL = "https://script.google.com/macros/s/AKfycbxAznk5rudobevlDA2NsBUHW9LxYikCm8LACmNKGTCYAmm4efCUiooNwh_xmHqKOQ3qYA/exec";
+  const postId = window.location.pathname.split("/").pop(); 
+  const reviewKey = "reviewed_" + postId;
 
-  let images = postContent.querySelectorAll("img");
-  let videos = postContent.querySelectorAll("iframe");
+  loadReviews();
 
-  if (images.length === 0 && videos.length === 0) return;
+  if (localStorage.getItem(reviewKey)) {
+    document.getElementById("review-form").innerHTML = "<p style='color: red;'>لقد قمت بإرسال تقييم لهذا المنتج.</p>";
+    return;
+  }
 
-  let container = document.createElement("div");
-  container.classList.add("container");
-
-  let sliderContainer = document.createElement("div");
-  sliderContainer.classList.add("slider-container");
-
-  // معالجة الصور
-  if (images.length > 0) {
-    let mainImage = document.createElement("img");
-    mainImage.classList.add("main-image");
-    mainImage.src = images[0].src;
-    sliderContainer.appendChild(mainImage);
-
-    let thumbnailsContainer = document.createElement("div");
-    thumbnailsContainer.classList.add("thumbnails");
-
-    images.forEach((img, index) => {
-      let thumb = document.createElement("img");
-      thumb.src = img.src;
-      thumb.addEventListener("click", function () {
-        mainImage.src = img.src;
-      });
-      thumbnailsContainer.appendChild(thumb);
-      img.style.display = "none"; // إخفاء الصور الأصلية
+  document.querySelectorAll(".star").forEach(star => {
+    star.addEventListener("click", function () {
+      selectedStars = parseInt(this.dataset.value);
+      document.querySelectorAll(".star").forEach(s => 
+        s.style.color = s.dataset.value <= selectedStars ? "gold" : "gray"
+      );
     });
-
-    sliderContainer.appendChild(thumbnailsContainer);
-  }
-
-  container.appendChild(sliderContainer); // إضافة سلايد شو الصور أولاً
-
-  // معالجة الفيديوهات
-  if (videos.length > 0) {
-    let videoSliderContainer = document.createElement("div");
-    videoSliderContainer.classList.add("video-slider-container");
-
-    videos.forEach((video, index) => {
-      let videoContainer = document.createElement("div");
-      videoContainer.classList.add("video-container");
-      let videoTitle = document.createElement("h3");
-      videoTitle.textContent = "فيديو المنتج " + (index + 1);
-      videoContainer.appendChild(videoTitle);
-      videoContainer.appendChild(video.cloneNode(true));
-      videoSliderContainer.appendChild(videoContainer);
-      video.style.display = "none"; // إخفاء الفيديو الأصلي
-    });
-
-    if (videos.length > 0) {
-      videoSliderContainer.querySelector('.video-container').classList.add('active');
-    }
-
-    // إنشاء المصغرات للفيديوهات
-    let videoThumbnailsContainer = document.createElement("div");
-    videoThumbnailsContainer.classList.add("video-thumbnails");
-
-    videos.forEach((video, index) => {
-      let thumb = document.createElement("img");
-      thumb.src = "https://img.youtube.com/vi/" + video.src.split("/")[4] + "/0.jpg"; // استخدام صورة المصغرة من يوتيوب
-      thumb.addEventListener("click", function () {
-        videoSliderContainer.querySelectorAll('.video-container').forEach(container => container.classList.remove('active'));
-        videoSliderContainer.querySelectorAll('.video-container')[index].classList.add('active');
-      });
-      videoThumbnailsContainer.appendChild(thumb);
-    });
-
-    videoSliderContainer.appendChild(videoThumbnailsContainer);
-    container.appendChild(videoSliderContainer); // إضافة سلايد شو الفيديو بعد الصور
-  }
-
-  // إذا لم يكن هناك فيديوهات، ضع سلايد شو الصور في منتصف الصفحة
-  if (videos.length === 0 && images.length > 0) {
-    sliderContainer.style.margin = "0 auto"; // توسيط السلايد
-  }
-
-  // إضافة فاصل بين سلايد الصور والفيديوهات إذا كانت موجودة
-  if (videos.length > 0) {
-    let separator = document.createElement("div");
-    separator.classList.add("separator");
-    container.appendChild(separator);
-  }
-
-  postContent.insertBefore(container, postContent.firstChild);
-
-  // تعديل النصوص المنسقة مباشرة
-  let formattedTexts = postContent.querySelectorAll("b, i, u");
-  formattedTexts.forEach((element) => {
-    let newText = document.createElement("span");
-    newText.classList.add("formatted-text");
-    
-    if (element.tagName === "B") {
-      newText.classList.add("bold");
-      newText.textContent = element.textContent + " 🌟";
-      sliderContainer.appendChild(newText);
-    } else if (element.tagName === "I") {
-      newText.classList.add("italic");
-      newText.textContent = element.textContent;
-      sliderContainer.appendChild(newText);
-    } else if (element.tagName === "U") {
-      newText.classList.add("underline");
-      newText.textContent = element.textContent;
-      let emojiSpan = document.createElement("span");
-      emojiSpan.classList.add("emoji");
-      emojiSpan.textContent = "😪";
-      newText.appendChild(emojiSpan);
-      sliderContainer.appendChild(newText);
-    }
-    
-    element.style.display = "none"; // إخفاء النصوص الأصلية
   });
+
+  function isArabic(text) {
+    return /^[\u0600-\u06FF\s]+$/.test(text);
+  }
+
+  document.getElementById("username").addEventListener("input", function () {
+    if (!isArabic(this.value)) {
+      this.value = this.value.replace(/[^\u0600-\u06FF\s]/g, '');
+    }
+  });
+
+  document.getElementById("comment").addEventListener("input", function () {
+    if (!isArabic(this.value)) {
+      this.value = this.value.replace(/[^\u0600-\u06FF\s]/g, '');
+    }
+  });
+
+  document.getElementById("submit-review").addEventListener("click", function (event) {
+    event.preventDefault(); 
+
+    let username = document.getElementById("username").value.trim() || "مجهول";
+    let comment = document.getElementById("comment").value.trim();
+
+    if (selectedStars === 0 || comment === "") {
+      alert("يرجى اختيار عدد النجوم وكتابة تعليق");
+      return;
+    }
+
+    if (!isArabic(username) || !isArabic(comment)) {
+      alert("يرجى إدخال النص باللغة العربية فقط.");
+      return;
+    }
+
+    let formData = new URLSearchParams();
+    formData.append("postId", postId);
+    formData.append("username", username);
+    formData.append("stars", selectedStars);
+    formData.append("comment", comment);
+
+    sendReview(formData);
+  });
+
+  function sendReview(formData) {
+    fetch(scriptURL, {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: formData.toString()
+    })
+    .then(response => response.json())
+    .then(data => {
+      alert(data.message);
+      if (data.status === "success") {
+        localStorage.setItem(reviewKey, "true");
+        document.getElementById("review-form").innerHTML = "<p style='color: red;'>شكرًا! لقد قمت بإرسال تقييم لهذا المنتج.</p>";
+        loadReviews();
+      }
+    })
+    .catch(error => {
+      console.error("Error:", error);
+      alert("حدث خطأ أثناء إرسال التقييم.");
+    });
+  }
+
+  async function loadReviews() {
+    try {
+      if (localStorage.getItem('reviews_' + postId)) {
+        let cachedReviews = JSON.parse(localStorage.getItem('reviews_' + postId));
+        renderReviews(cachedReviews);
+      }
+
+      let response = await fetch(`${scriptURL}?postId=${postId}`);
+      if (!response.ok) throw new Error("فشل تحميل التقييمات.");
+      
+      let data = await response.json();
+      localStorage.setItem('reviews_' + postId, JSON.stringify(data));
+      renderReviews(data);
+
+    } catch (error) {
+      console.error("خطأ:", error);
+      document.getElementById("reviews").innerHTML = "حدث خطأ أثناء تحميل التقييمات.";
+    }
+  }
+
+  function renderReviews(data) {
+    let reviewsContainer = document.getElementById("reviews");
+    reviewsContainer.innerHTML = "<h3>التقييمات</h3>";
+
+    if (data.length === 0) {
+      reviewsContainer.innerHTML += "<p>لا توجد تقييمات لهذا المنتج بعد.</p>";
+    } else {
+      let totalStars = 0;
+      data.forEach(review => {
+        totalStars += parseInt(review.stars);
+      });
+      let averageStars = (totalStars / data.length).toFixed(2);
+      let averageStarsHtml = generateStarsHtml(averageStars);
+
+      reviewsContainer.innerHTML += `<p><strong>التقييم العام: ${averageStarsHtml}</strong></p>`;
+
+      const visibleReviews = data.slice(0, 3);
+      visibleReviews.forEach(review => {
+        let stars = "★".repeat(parseInt(review.stars)) + "☆".repeat(5 - parseInt(review.stars));
+        reviewsContainer.innerHTML += `
+          <div class="review">
+            <strong>${review.username}</strong> - ${stars} (${review.stars}/5)
+            <p>${review.comment}</p>
+          </div>
+        `;
+      });
+
+      const hiddenReviews = data.slice(3);
+      hiddenReviews.forEach(review => {
+        let stars = "★".repeat(parseInt(review.stars)) + "☆".repeat(5 - parseInt(review.stars));
+        reviewsContainer.innerHTML += `
+          <div class="review hidden">
+            <strong>${review.username}</strong> - ${stars} (${review.stars}/5)
+            <p>${review.comment}</p>
+          </div>
+        `;
+      });
+
+      reviewsContainer.addEventListener("scroll", function () {
+        if (reviewsContainer.scrollTop + reviewsContainer.clientHeight >= reviewsContainer.scrollHeight) {
+          const hiddenReviews = document.querySelectorAll(".review.hidden");
+          hiddenReviews.forEach((review) => {
+            review.classList.remove("hidden");
+          });
+        }
+      });
+    }
+  }
+
+  function generateStarsHtml(stars) {
+    let fullStars = Math.floor(stars);
+    let halfStar = (stars - fullStars) >= 0.5 ? '★' : '☆';
+    let emptyStars = 5 - fullStars - (halfStar === '★' ? 1 : 0);
+
+    let starsHtml = '★'.repeat(fullStars);
+    if (halfStar === '★') starsHtml += '★';
+    starsHtml += '☆'.repeat(emptyStars);
+    
+    return starsHtml;
+  }
 });
