@@ -8,72 +8,35 @@
 [class~=related-products] h2,[class~=related-products]{margin-left:0;}[class~=product-card] h3,.product-card a{text-decoration:none !important;}#product-grid{display:grid;}[class~=related-products]{margin-bottom:.625000002pc;}[class~=product-card] h3{border-bottom-width:medium !important;}[class~=related-products],[class~=related-products] h2{margin-right:0;}[class~=related-products]{margin-top:7.500000024pt;}[class~=related-products]{padding-left:.104166667in;}[class~=related-products]{padding-bottom:10.000000032px;}[class~=product-card] h3{border-bottom-style:none !important;}[class~=related-products]{padding-right:7.500000024pt;}[class~=product-card] h3{border-bottom-color:currentColor !important;}[class~=related-products]{padding-top:.104166667in;}[class~=related-products]{background:#f8f9fa;}[class~=related-products]{border-radius:7.500000024pt;}[class~=product-card] h3{border-image:none !important;}[class~=related-products]{box-shadow:0 .020833333in .052083333in rgba(0,0,0,.1);}[class~=related-products]{text-align:center;}[class~=section-divider]{width:80%;}[class~=section-divider]{margin-left:auto;}.product-card a,[class~=product-card] h3{box-shadow:none !important;}[class~=related-products] h2,[class~=section-divider]{margin-bottom:.3125pc;}.product-card a{border-bottom-width:medium !important;}.product-card a{border-bottom-style:none !important;}#product-grid{grid-template-columns:repeat(5,1fr);}[class~=section-divider]{margin-right:auto;}[class~=related-products] h2,[class~=section-divider]{margin-top:.052083333in;}[class~=section-divider]{border-left-width:0;}.product-card a{border-bottom-color:currentColor !important;}.product-card a{border-image:none !important;}#product-grid{gap:10.000000032px;}[class~=section-divider]{border-bottom-width:0;}[class~=section-divider]{border-right-width:0;}[class~=section-divider]{border-top-width:0;}#product-grid{margin-bottom:0;}[class~=related-products] h2{font-size:15pt;}[class~=section-divider]{border-left-style:none;}[class~=related-products] h2{color:#333;}[class~=section-divider]{border-bottom-style:none;}[class~=section-divider]{border-right-style:none;}[class~=section-divider]{border-top-style:none;}[class~=section-divider]{border-left-color:currentColor;}[class~=section-divider]{border-bottom-color:currentColor;}[class~=section-divider]{border-right-color:currentColor;}[class~=section-divider]{border-top-color:currentColor;}[class~=section-divider]{border-image:none;}[class~=section-divider]{height:.124999998pc;}[class~=section-divider]{background:linear-gradient(to right,transparent,#d9534f,transparent);}@media (max-width:1200px){#product-grid{grid-template-columns:repeat(4,1fr);}}@media (max-width:992px){#product-grid{grid-template-columns:repeat(3,1fr);}}@media (max-width:768px){#product-grid{grid-template-columns:repeat(2,1fr);}}[class~=product-card]:hover{transform:scale(1.05);}[class~=product-card]{border-left-width:.062500002pc;}[class~=product-card] img{max-width:100%;}[class~=product-card] [class~=coming-soon]{position:absolute;}[class~=product-card]{border-bottom-width:.750000024pt;}[class~=product-card] img{height:112.5pt;}[class~=product-card] [class~=coming-soon]{top:50%;}[class~=product-card] [class~=coming-soon],[class~=product-card] img{border-radius:.312499998pc;}[class~=product-card] img{display:block;}[class~=product-card] [class~=coming-soon]{left:50%;}[class~=product-card] img{margin-left:auto;}[class~=product-card] img{margin-bottom:0;}[class~=product-card]{border-right-width:.062500002pc;}[class~=product-card] [class~=coming-soon]{transform:translate(-50%,-50%);}[class~=product-card] img{margin-right:auto;}[class~=product-card]{border-top-width:.750000024pt;}[class~=product-card]{border-left-style:solid;}[class~=product-card] [class~=coming-soon]{color:white;}[class~=product-card] [class~=coming-soon]{background-color:rgba(0,0,0,.7);}[class~=product-card] [class~=coming-soon]{padding-left:.083333333in;}[class~=product-card] img{margin-top:0;}[class~=product-card] [class~=coming-soon]{padding-bottom:.499999998pc;}[class~=product-card] h3{font-size:16px;}[class~=product-card]{border-bottom-style:solid;}[class~=product-card] [class~=coming-soon]{padding-right:.499999998pc;}[class~=product-card]{border-right-style:solid;}[class~=product-card]{border-top-style:solid;}[class~=product-card] [class~=coming-soon]{padding-top:5.999999976pt;}[class~=product-card] [class~=coming-soon]{z-index:1;}[class~=product-card]{border-left-color:#ddd;}[class~=product-card] h3{color:#333;}[class~=product-card] [class~=coming-soon],.product-card p{font-weight:bold;}[class~=product-card] h3,[class~=product-card] p{margin-left:0;}[class~=product-card]{border-bottom-color:#ddd;}[class~=product-card]{border-right-color:#ddd;}[class~=product-card]{border-top-color:#ddd;}[class~=product-card]{border-image:none;}[class~=product-card] [class~=coming-soon]{font-size:.875pc;}[class~=product-card]{padding-left:7.500000024pt;}[class~=product-card]{padding-bottom:10.000000032px;}[class~=product-card]{padding-right:.625000002pc;}[class~=product-card]{padding-top:10.000000032px;}[class~=product-card]{border-radius:7.500000024pt;}[class~=product-card]{background:#fff;}[class~=product-card]{transition:transform .3s ease-in-out;}[class~=product-card]{text-align:center;}[class~=product-card]{position:relative;}[class~=product-card] h3,[class~=product-card] p{margin-bottom:.052083333in;}[class~=product-card] p,[class~=product-card] h3{margin-right:0;}[class~=product-card] h3,[class~=product-card] p{margin-top:5px;}[class~=product-card] p{color:#d9534f;}
 
 
+
+
+
 @media (max-width: 768px) {
-    /* منع خروج المحتوى عن الشاشة */
-    body {
-        overflow-x: hidden !important;
-    }
-
-    /* ضبط منطقة السكرول */
-    .scrollable-container {
-        overflow-x: auto !important; /* إجبار التمرير الأفقي */
-        padding: 10px !important; /* إضافة مسافة داخلية */
-        scroll-padding: 10px !important;
-        white-space: nowrap !important; /* منع الانتقال للسطر التالي */
-        max-width: 100% !important; /* الحفاظ على تناسق العرض */
-        margin: auto !important;
-    }
-
-    /* ضبط المنتجات داخل السكرول */
-    .scrollable-wrapper {
-        display: flex !important;
-        gap: 10px !important; /* ترك مسافات بين المنتجات */
-        flex-wrap: nowrap !important; /* منع انتقال المنتجات للسطر التالي */
-    }
-
-    /* تصغير المنتجات على الهاتف */
-    .scrollable-wrapper .product-card {
-        flex: 0 0 130px !important; /* حجم ثابت مناسب للمنتجات */
-        max-width: 140px !important;
-        min-width: 120px !important;
-    }
-
-    /* تحسين شكل شريط التمرير */
-    .scrollable-container::-webkit-scrollbar {
-        height: 8px !important;
-    }
-
-    .scrollable-container::-webkit-scrollbar-thumb {
-        background: #888 !important;
-        border-radius: 4px !important;
-    }
-
-    .scrollable-container::-webkit-scrollbar-track {
-        background: #f1f1f1 !important;
-    }
-
-    /* تعديل تصميم المنتج ليكون أصغر وأكثر تناسبًا */
     .product-card {
-        max-width: 90% !important; /* تقليل العرض ليناسب الشاشة */
+        max-width: 80% !important; /* تقليل العرض أكثر ليناسب الشاشة */
         margin: auto !important; /* توسيط العنصر */
-        padding: 8px !important; /* تقليل الحواف الداخلية */
-        font-size: 14px !important; /* تصغير الخط */
+        padding: 6px !important; /* تقليل الحواف الداخلية */
+        font-size: 13px !important; /* تصغير الخط */
+        border-radius: 5px !important; /* تقليل استدارة الحواف */
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1) !important; /* تحسين الظل */
     }
 
     .product-card img {
-        height: 150px !important; /* تصغير ارتفاع الصور */
+        height: 130px !important; /* تصغير ارتفاع الصور */
         object-fit: contain !important;
     }
 
     .product-card h2 {
-        font-size: 14px !important; /* تصغير العنوان */
+        font-size: 12px !important; /* تصغير العنوان */
     }
 
     .product-card .price {
-        font-size: 12px !important; /* تصغير حجم السعر */
-        padding: 3px 6px !important; /* تعديل الحواف */
+        font-size: 11px !important; /* تصغير حجم السعر */
+        padding: 2px 5px !important; /* تعديل الحواف */
     }
 }
+
+
 
 
 
