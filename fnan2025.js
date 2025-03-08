@@ -58,10 +58,10 @@ document.addEventListener("DOMContentLoaded", function() {
     videoThumbnailsContainer.classList.add("video-thumbnails");
 
     videos.forEach((video, index) => {
-      let videoId = getYouTubeVideoId(video.src);
+      let thumb = document.createElement("img");
+      let videoId = video.src.split("/")[4]; // استخراج ID الفيديو
       if (videoId) {
-        let thumb = document.createElement("img");
-        thumb.src = `https://img.youtube.com/vi/${videoId}/0.jpg`;
+        thumb.src = "https://img.youtube.com/vi/" + videoId + "/0.jpg";
         thumb.addEventListener("click", function () {
           videoSliderContainer.querySelectorAll('.video-container').forEach(container => container.classList.remove('active'));
           videoSliderContainer.querySelectorAll('.video-container')[index].classList.add('active');
@@ -75,10 +75,31 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 
   postContent.insertBefore(container, postContent.firstChild);
-});
 
-// دالة لاستخراج ID الفيديو من رابط YouTube
-function getYouTubeVideoId(url) {
-  let match = url.match(/(?:youtube\.com\/(?:[^\/]+\/[^\/]+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/);
-  return match ? match[1] : null;
-}
+  // تعديل النصوص المنسقة مباشرة
+  let formattedTexts = postContent.querySelectorAll("b, i, u");
+  formattedTexts.forEach((element) => {
+    let newText = document.createElement("span");
+    newText.classList.add("formatted-text");
+
+    if (element.tagName === "B") {
+      newText.classList.add("bold");
+      newText.textContent = element.textContent + " 🌟";
+      sliderContainer.appendChild(newText);
+    } else if (element.tagName === "I") {
+      newText.classList.add("italic");
+      newText.textContent = element.textContent;
+      sliderContainer.appendChild(newText);
+    } else if (element.tagName === "U") {
+      newText.classList.add("underline");
+      newText.textContent = element.textContent;
+      let emojiSpan = document.createElement("span");
+      emojiSpan.classList.add("emoji");
+      emojiSpan.textContent = "😪";
+      newText.appendChild(emojiSpan);
+      sliderContainer.appendChild(newText);
+    }
+
+    element.style.display = "none"; // إخفاء النصوص الأصلية
+  });
+});
