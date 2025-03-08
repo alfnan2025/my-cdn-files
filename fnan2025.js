@@ -54,20 +54,20 @@ document.addEventListener("DOMContentLoaded", function() {
       video.style.display = "none"; // إخفاء الفيديو الأصلي
     });
 
-    videoSliderContainer.querySelector('.video-container').classList.add('active');
-
     let videoThumbnailsContainer = document.createElement("div");
     videoThumbnailsContainer.classList.add("video-thumbnails");
 
     videos.forEach((video, index) => {
-      let videoId = video.src.split("/")[4];
-      let thumb = document.createElement("img");
-      thumb.src = `https://img.youtube.com/vi/${videoId}/0.jpg`;
-      thumb.addEventListener("click", function () {
-        videoSliderContainer.querySelectorAll('.video-container').forEach(container => container.classList.remove('active'));
-        videoSliderContainer.querySelectorAll('.video-container')[index].classList.add('active');
-      });
-      videoThumbnailsContainer.appendChild(thumb);
+      let videoId = getYouTubeVideoId(video.src);
+      if (videoId) {
+        let thumb = document.createElement("img");
+        thumb.src = `https://img.youtube.com/vi/${videoId}/0.jpg`;
+        thumb.addEventListener("click", function () {
+          videoSliderContainer.querySelectorAll('.video-container').forEach(container => container.classList.remove('active'));
+          videoSliderContainer.querySelectorAll('.video-container')[index].classList.add('active');
+        });
+        videoThumbnailsContainer.appendChild(thumb);
+      }
     });
 
     videoSliderContainer.appendChild(videoThumbnailsContainer);
@@ -76,3 +76,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
   postContent.insertBefore(container, postContent.firstChild);
 });
+
+// دالة لاستخراج ID الفيديو من رابط YouTube
+function getYouTubeVideoId(url) {
+  let match = url.match(/(?:youtube\.com\/(?:[^\/]+\/[^\/]+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/);
+  return match ? match[1] : null;
+}
