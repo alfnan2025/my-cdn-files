@@ -1,5 +1,5 @@
 const wrapper = document.getElementById("scrollable-wrapper");
-const categoryName = "تخفيضات"; // ضع اسم التصنيف المطلوب
+const categoryName = "تخفيضات"; // اسم التصنيف المطلوب
 const maxResults = 15;
 
 // إعدادات العد التنازلي
@@ -106,6 +106,7 @@ async function fetchProducts() {
     }
 }
 
+// تأكد من أن الصفحة قد تم تحميلها قبل تشغيل السكربت
 document.addEventListener("DOMContentLoaded", function() {
     fetchProducts();
     updateCountdown(); // تحديث العد التنازلي عند تحميل الصفحة
