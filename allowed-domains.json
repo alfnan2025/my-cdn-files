@@ -1,6 +1,6 @@
 {
-    "allowed_domains": [
-        "google.com",
-        "your-allowed-domain2.com"
-    ]
+  "allowed_domains": [
+    "example.com",
+    "your-allowed-domain.com"
+  ]
 }
