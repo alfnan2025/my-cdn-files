@@ -1,0 +1,6 @@
+{
+    "allowed_domains": [
+        "your-allowed-domain1.com",
+        "your-allowed-domain2.com"
+    ]
+}
