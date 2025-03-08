@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function() {
     let thumbnailsContainer = document.createElement("div");
     thumbnailsContainer.classList.add("thumbnails");
 
-    images.forEach((img) => {
+    images.forEach((img, index) => {
       let thumb = document.createElement("img");
       thumb.src = img.src;
       thumb.addEventListener("click", function () {
@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function() {
     sliderContainer.appendChild(thumbnailsContainer);
   }
 
-  container.appendChild(sliderContainer);
+  container.appendChild(sliderContainer); // إضافة سلايد شو الصور أولاً
 
   // معالجة الفيديوهات
   if (videos.length > 0) {
@@ -54,14 +54,22 @@ document.addEventListener("DOMContentLoaded", function() {
       video.style.display = "none"; // إخفاء الفيديو الأصلي
     });
 
+    if (videos.length > 0) {
+      videoSliderContainer.querySelector('.video-container').classList.add('active');
+    }
+
+    // إنشاء المصغرات للفيديوهات
     let videoThumbnailsContainer = document.createElement("div");
     videoThumbnailsContainer.classList.add("video-thumbnails");
 
     videos.forEach((video, index) => {
-      let thumb = document.createElement("img");
-      let videoId = video.src.split("/")[4]; // استخراج ID الفيديو
+      let videoSrc = video.src;
+      let videoIdMatch = videoSrc.match(/(?:youtube\.com\/(?:[^\/]+\/[^\/]+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/);
+      let videoId = videoIdMatch ? videoIdMatch[1] : null;
+
       if (videoId) {
-        thumb.src = "https://img.youtube.com/vi/" + videoId + "/0.jpg";
+        let thumb = document.createElement("img");
+        thumb.src = "https://img.youtube.com/vi/" + videoId + "/0.jpg"; // استخدام صورة المصغرة من يوتيوب
         thumb.addEventListener("click", function () {
           videoSliderContainer.querySelectorAll('.video-container').forEach(container => container.classList.remove('active'));
           videoSliderContainer.querySelectorAll('.video-container')[index].classList.add('active');
@@ -71,7 +79,19 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     videoSliderContainer.appendChild(videoThumbnailsContainer);
-    container.appendChild(videoSliderContainer);
+    container.appendChild(videoSliderContainer); // إضافة سلايد شو الفيديو بعد الصور
+  }
+
+  // إذا لم يكن هناك فيديوهات، ضع سلايد شو الصور في منتصف الصفحة
+  if (videos.length === 0 && images.length > 0) {
+    sliderContainer.style.margin = "0 auto"; // توسيط السلايد
+  }
+
+  // إضافة فاصل بين سلايد الصور والفيديوهات إذا كانت موجودة
+  if (videos.length > 0) {
+    let separator = document.createElement("div");
+    separator.classList.add("separator");
+    container.appendChild(separator);
   }
 
   postContent.insertBefore(container, postContent.firstChild);
@@ -81,7 +101,7 @@ document.addEventListener("DOMContentLoaded", function() {
   formattedTexts.forEach((element) => {
     let newText = document.createElement("span");
     newText.classList.add("formatted-text");
-
+    
     if (element.tagName === "B") {
       newText.classList.add("bold");
       newText.textContent = element.textContent + " 🌟";
@@ -99,7 +119,7 @@ document.addEventListener("DOMContentLoaded", function() {
       newText.appendChild(emojiSpan);
       sliderContainer.appendChild(newText);
     }
-
+    
     element.style.display = "none"; // إخفاء النصوص الأصلية
   });
 });
