@@ -30,12 +30,19 @@ input, textarea {
     padding: .625pc;
 }
 
-#stars, #review-form {
+#review-form {
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
     gap: .104166667in;
+}
+
+#stars {
+    display: flex;
+    flex-direction: row; /* تعديل ليكون في خط أفقي */
+    justify-content: center;
+    gap: 3.75pt;
 }
 
 [class~=star] {
@@ -47,12 +54,6 @@ input, textarea {
 
 [class~=star]:hover, .star.selected, [class~=review] [class~=stars] {
     color: gold;
-}
-
-#stars {
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 3.75pt;
 }
 
 textarea {
