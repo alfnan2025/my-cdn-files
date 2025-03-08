@@ -1,5 +1,5 @@
     const wrapper = document.getElementById("scrollable-wrapper");
-    const categoryName = "تجربة"; // ضع اسم التصنيف المطلوب
+    const categoryName = "تخفيضات"; // ضع اسم التصنيف المطلوب
     const maxResults = 15;
 
     // إعدادات العد التنازلي
