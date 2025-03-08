@@ -5,19 +5,19 @@ document.addEventListener("DOMContentLoaded", function () {
     if (!postContent) return;
 
     setTimeout(() => {
-        let images = postContent.querySelectorAll("img");
-        let videos = postContent.querySelectorAll("iframe");
+        let images = [...postContent.querySelectorAll("img")];
+        let videos = [...postContent.querySelectorAll("iframe")];
 
         if (images.length === 0 && videos.length === 0) return;
 
         let container = document.createElement("div");
         container.classList.add("media-container");
 
-        let sliderContainer = document.createElement("div");
-        sliderContainer.classList.add("slider-container");
-
-        // معالجة الصور
+        // إنشاء سلايدر الصور
         if (images.length > 0) {
+            let sliderContainer = document.createElement("div");
+            sliderContainer.classList.add("slider-container");
+
             let mainImage = document.createElement("img");
             mainImage.classList.add("main-image");
             mainImage.src = images[0].src;
@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
             images.forEach(img => {
                 let thumb = document.createElement("img");
                 thumb.src = img.src;
-                thumb.addEventListener("click", function () {
+                thumb.addEventListener("click", () => {
                     mainImage.src = img.src;
                 });
                 thumbnailsContainer.appendChild(thumb);
@@ -37,30 +37,37 @@ document.addEventListener("DOMContentLoaded", function () {
             });
 
             sliderContainer.appendChild(thumbnailsContainer);
+            container.appendChild(sliderContainer);
         }
 
-        container.appendChild(sliderContainer);
-
-        // معالجة الفيديوهات
+        // إنشاء سلايدر الفيديوهات
         if (videos.length > 0) {
             let videoContainer = document.createElement("div");
             videoContainer.classList.add("video-container");
 
+            let videoWrapper = document.createElement("div");
+            videoWrapper.classList.add("video-wrapper");
+
             videos.forEach((video, index) => {
                 let wrapper = document.createElement("div");
-                wrapper.classList.add("video-wrapper");
+                wrapper.classList.add("video-item");
+
                 let title = document.createElement("h3");
                 title.textContent = `فيديو المنتج ${index + 1}`;
                 wrapper.appendChild(title);
-                wrapper.appendChild(video.cloneNode(true));
-                videoContainer.appendChild(wrapper);
+
+                let clonedVideo = video.cloneNode(true);
+                clonedVideo.style.display = "block";
+                wrapper.appendChild(clonedVideo);
+
+                videoWrapper.appendChild(wrapper);
                 video.style.display = "none"; // إخفاء الفيديو الأصلي
             });
 
+            videoContainer.appendChild(videoWrapper);
             container.appendChild(videoContainer);
         }
 
         postContent.insertBefore(container, postContent.firstChild);
-
     }, 1000); // تأخير لمدة ثانية لضمان تحميل المحتوى
 });
