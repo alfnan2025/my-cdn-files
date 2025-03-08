@@ -9,6 +9,29 @@
 
 
 
+.scrollable-container {
+    padding: 10px; /* إضافة مسافة داخلية حول المنتجات */
+    overflow-x: auto; /* تمكين التمرير الأفقي */
+    scroll-padding: 10px; /* ترك مسافة قبل وبعد السكرول */
+}
+
+.scrollable-container::-webkit-scrollbar {
+    height: 8px; /* جعل شريط التمرير أوضح */
+}
+
+.scrollable-container::-webkit-scrollbar-thumb {
+    background: #888; /* لون شريط التمرير */
+    border-radius: 5px; /* حواف مستديرة */
+}
+
+.scrollable-container::-webkit-scrollbar-track {
+    background: #f1f1f1; /* لون الخلفية */
+}
+
+/* تعديل المسافة بين المنتجات */
+.scrollable-container .product-card {
+    margin-right: 10px; /* ترك مسافة بين المنتجات */
+}
 
 
 @media (max-width: 768px) {
