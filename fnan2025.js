@@ -1,6 +1,12 @@
-<script>
-    document.getElementById(&#39;mobile-menu&#39;).addEventListener(&#39;click&#39;, function() {
-        const navLinks = document.querySelector(&#39;.nav-links&#39;);
-        navLinks.classList.toggle(&#39;active&#39;);
-    });
-</script>
+document.addEventListener("DOMContentLoaded", function() {
+    var menuButton = document.getElementById("mobile-menu");
+    var navLinks = document.querySelector(".nav-links");
+
+    if (menuButton && navLinks) {
+        menuButton.addEventListener("click", function() {
+            navLinks.classList.toggle("active");
+        });
+    } else {
+        console.error("❌ عنصر #mobile-menu أو .nav-links غير موجود!");
+    }
+});
