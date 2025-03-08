@@ -63,19 +63,13 @@ document.addEventListener("DOMContentLoaded", function() {
     videoThumbnailsContainer.classList.add("video-thumbnails");
 
     videos.forEach((video, index) => {
-      let videoSrc = video.src;
-      let videoIdMatch = videoSrc.match(/(?:youtube\.com\/(?:[^\/]+\/[^\/]+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/);
-      let videoId = videoIdMatch ? videoIdMatch[1] : null;
-
-      if (videoId) {
-        let thumb = document.createElement("img");
-        thumb.src = "https://img.youtube.com/vi/" + videoId + "/0.jpg"; // استخدام صورة المصغرة من يوتيوب
-        thumb.addEventListener("click", function () {
-          videoSliderContainer.querySelectorAll('.video-container').forEach(container => container.classList.remove('active'));
-          videoSliderContainer.querySelectorAll('.video-container')[index].classList.add('active');
-        });
-        videoThumbnailsContainer.appendChild(thumb);
-      }
+      let thumb = document.createElement("img");
+      thumb.src = "https://img.youtube.com/vi/" + video.src.split("/")[4] + "/0.jpg"; // استخدام صورة المصغرة من يوتيوب
+      thumb.addEventListener("click", function () {
+        videoSliderContainer.querySelectorAll('.video-container').forEach(container => container.classList.remove('active'));
+        videoSliderContainer.querySelectorAll('.video-container')[index].classList.add('active');
+      });
+      videoThumbnailsContainer.appendChild(thumb);
     });
 
     videoSliderContainer.appendChild(videoThumbnailsContainer);
