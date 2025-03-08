@@ -10,33 +10,41 @@
 
 
 @media (max-width: 768px) {
+    /* ضبط منطقة السكرول */
     .scrollable-container {
-        padding: 15px !important; /* زيادة المسافة داخل السكرول */
-        overflow-x: auto !important; /* إجبار السكرول الأفقي */
-        scroll-padding: 15px !important;
+        overflow-x: auto !important; /* إجبار التمرير الأفقي */
+        padding: 10px !important; /* إضافة مسافة داخلية */
+        scroll-padding: 10px !important;
+        white-space: nowrap !important; /* منع الانتقال للسطر التالي */
     }
 
+    /* ضبط المنتجات داخل السكرول */
+    .scrollable-wrapper {
+        display: flex !important;
+        gap: 10px !important; /* ترك مسافات بين المنتجات */
+    }
+
+    /* تصغير المنتجات على الهاتف */
+    .scrollable-wrapper .product-card {
+        flex: 0 0 130px !important; /* حجم ثابت مناسب للمنتجات */
+        max-width: 140px !important;
+        min-width: 120px !important;
+    }
+
+    /* تحسين شكل شريط التمرير */
     .scrollable-container::-webkit-scrollbar {
-        height: 10px !important; /* تكبير حجم شريط التمرير */
+        height: 8px !important;
     }
 
     .scrollable-container::-webkit-scrollbar-thumb {
-        background: #888 !important; /* لون شريط التمرير */
-        border-radius: 5px !important;
+        background: #888 !important;
+        border-radius: 4px !important;
     }
 
     .scrollable-container::-webkit-scrollbar-track {
         background: #f1f1f1 !important;
     }
-
-    /* جعل المنتجات تظهر أصغر وتكون داخل السكرول */
-    .scrollable-container .product-card {
-        min-width: 120px !important; /* تصغير حجم المنتجات */
-        max-width: 140px !important;
-        margin-right: 10px !important; /* ترك مسافة بين المنتجات */
-    }
 }
-
 
 
 
