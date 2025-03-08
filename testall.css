@@ -14,11 +14,12 @@
 @media (max-width: 768px) {
     .product-card {
         max-width: 80% !important; /* تقليل العرض أكثر ليناسب الشاشة */
-        margin: auto !important; /* توسيط العنصر */
+        margin: 0 auto !important; /* توسيط العنصر */
         padding: 6px !important; /* تقليل الحواف الداخلية */
         font-size: 13px !important; /* تصغير الخط */
         border-radius: 5px !important; /* تقليل استدارة الحواف */
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1) !important; /* تحسين الظل */
+        display: block !important; /* التأكد من أن العنصر يعرض ككتلة */
     }
 
     .product-card img {
