@@ -33,12 +33,13 @@ function fetchProductsFromBlogger(maxResults, category) {
                         image = imgTag.src;
                     }
 
-                    // تعديل التعبير العادي لاستخراج السعر من النص
+                    // استخراج السعر إذا كان متاحًا
                     let priceMatch = tempDiv.innerHTML.match(/السعر\s*:\s*(\d+(?:\.\d+)?)\s*جنيه/);
                     if (priceMatch) {
                         price = `السعر: ${priceMatch[1]} جنيه`;
                     }
                     
+                    // التحقق مما إذا كان المنتج غير متوفر
                     if (tempDiv.innerHTML.includes("غير متوفر")) {
                         comingSoon = "<div class='coming-soon'>غير متوفر</div>";
                     }
@@ -68,8 +69,8 @@ function fetchProductsFromBlogger(maxResults, category) {
         .catch(error => console.error("خطأ في جلب المنتجات:", error));
 }
 
-// تحديد التصنيف المطلوب
-let category = "منتجات قد تعجبك"; 
-
-// بدء تحميل المنتجات
-fetchProductsFromBlogger(6, category);
+// تشغيل الكود فقط إذا كانت الصفحة الرئيسية
+if (window.location.pathname === "/" || window.location.pathname === "/index.html") {
+    let category = "منتجات قد تعجبك"; 
+    fetchProductsFromBlogger(6, category);
+}
