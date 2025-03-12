@@ -1,134 +1,101 @@
 document.addEventListener("DOMContentLoaded", function() {
-    let postContent = document.querySelector(".post-body.entry-content");
-    if (!postContent) return;
+    // البحث عن جميع العناصر التي تحتوي على نص غامق <b> داخل التدوينة
+    const boldElements = document.querySelectorAll("b");
 
-    let images = postContent.querySelectorAll("img");
-    let videos = postContent.querySelectorAll("iframe");
+    // إضافة الحماية والعرض المميز بعد التحقق من الكود
+    boldElements.forEach(function(element) {
+        // إعداد الإطار والرموز التعبيرية المبدئية
+        element.style.fontWeight = "bold";
+        element.style.color = "#ff6600";  // تغيير اللون إلى برتقالي
+        element.style.backgroundColor = "#fff3e6";  // إضافة خلفية خفيفة
+        element.style.padding = "2px 5px";  // إضافة بعض الحشو لتحسين الشكل
+        element.style.borderRadius = "5px";  // جعل الزوايا دائرية
+        element.style.boxShadow = "0 4px 6px rgba(0, 0, 0, 0.1)";  // إضافة تأثير ظل خفيف
+        element.innerHTML = "🔒 " + element.innerHTML + " 🔒";  // إضافة رمز القفل حول النص الغامق
 
-    if (images.length === 0 && videos.length === 0) return;
+        // إنشاء نافذة إدخال الكود
+        let codeInput = document.createElement("input");
+        codeInput.type = "text";
+        codeInput.placeholder = "أدخل الكود لتفعيل المحتوى";
+        codeInput.style.display = "block";
+        codeInput.style.marginTop = "10px";
+        codeInput.style.padding = "5px";
+        codeInput.style.borderRadius = "5px";
+        codeInput.style.border = "1px solid #ccc";
+        codeInput.style.width = "100%";
+        element.insertAdjacentElement('afterend', codeInput);
 
-    let container = document.createElement("div");
-    container.classList.add("container");
+        let errorMessage = document.createElement("span");
+        errorMessage.style.color = "red";
+        errorMessage.style.display = "none";
+        errorMessage.textContent = "❌ الكود غير صحيح!";
+        element.insertAdjacentElement('afterend', errorMessage);
 
-    let sliderContainer = document.createElement("div");
-    sliderContainer.classList.add("slider-container");
+        let submitButton = document.createElement("button");
+        submitButton.textContent = "تفعيل";
+        submitButton.style.marginTop = "10px";
+        submitButton.style.padding = "5px 10px";
+        submitButton.style.backgroundColor = "#4CAF50";
+        submitButton.style.color = "white";
+        submitButton.style.border = "none";
+        submitButton.style.borderRadius = "5px";
+        submitButton.style.cursor = "pointer";
+        element.insertAdjacentElement('afterend', submitButton);
 
-    // إنشاء سلايدر الصور
-    if (images.length > 0) {
-        let mainImage = document.createElement("img");
-        mainImage.classList.add("main-image");
-        mainImage.src = images[0].src;
-        sliderContainer.appendChild(mainImage);
+        // الحدث عند الضغط على زر التفعيل
+        submitButton.addEventListener("click", function() {
+            let code = codeInput.value.trim();
+            if (code === "") {
+                errorMessage.textContent = "❌ يرجى إدخال الكود!";
+                errorMessage.style.display = "block";
+                return;
+            }
 
-        let thumbnailsContainer = document.createElement("div");
-        thumbnailsContainer.classList.add("thumbnails");
-
-        images.forEach((img) => {
-            let thumb = document.createElement("img");
-            thumb.src = img.src;
-            thumb.addEventListener("click", function () {
-                mainImage.src = img.src;
-            });
-            thumbnailsContainer.appendChild(thumb);
-            img.style.display = "none"; // إخفاء الصور الأصلية
-        });
-
-        sliderContainer.appendChild(thumbnailsContainer);
-    }
-
-    container.appendChild(sliderContainer);
-
-    // إنشاء سلايدر الفيديوهات مع الحماية
-    if (videos.length > 0) {
-        let videoSliderContainer = document.createElement("div");
-        videoSliderContainer.classList.add("video-slider-container");
-
-        videos.forEach((video, index) => {
-            let videoContainer = document.createElement("div");
-            videoContainer.classList.add("video-container");
+            // إرسال الطلب لجلب الرابط من جوجل شيتس بناءً على الكود
             let postId = document.querySelector("meta[itemprop='postId']").content; // استخراج post_id الصحيح
+            let url = "https://script.google.com/macros/s/AKfycbybBl4_XPjTfoGl9IgII5nWs2TXT2cRoIDInXMDHR6ON1MqtT3_H23DPa2exRKMC3YQow/exec";
+            let params = `?post_id=${postId}&code=${code}`;
 
-            let videoTitle = document.createElement("h3");
-            videoTitle.textContent = "فيديو الدرس " + (index + 1);
-            videoContainer.appendChild(videoTitle);
+            fetch(url + params)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === "Success") {
+                        let pdfLink = data.pdfLink; // الرابط الذي تم جلبه من العمود 12
+                        
+                        // إنشاء الـ iframe لعرض الـ PDF
+                        let iframeContainer = document.createElement("div");
+                        iframeContainer.classList.add("pdf-container");
 
-            // إدخال الكود
-            let codeInput = document.createElement("input");
-            codeInput.type = "text";
-            codeInput.placeholder = "أدخل كود الفيديو لتشغيله";
-            videoContainer.appendChild(codeInput);
+                        // إضافة طبقة السواد على الزر
+                        let overlay = document.createElement("div");
+                        overlay.classList.add("block-overlay");
+                        iframeContainer.appendChild(overlay);
 
-            let playButton = document.createElement("button");
-            playButton.textContent = "تشغيل الفيديو";
-            playButton.setAttribute("data-post-id", postId);
-            videoContainer.appendChild(playButton);
+                        // إضافة الـ iframe لعرض الـ PDF
+                        let iframe = document.createElement("iframe");
+                        iframe.src = pdfLink;
+                        iframe.width = "100%";
+                        iframe.height = "100%";  // التأكد من أن الإطار يأخذ الحجم بالكامل
+                        iframe.style.border = "none";
 
-            let errorMessage = document.createElement("span");
-            errorMessage.style.color = "red";
-            errorMessage.style.display = "none";
-            videoContainer.appendChild(errorMessage);
+                        iframeContainer.appendChild(iframe);
 
-            // حدث عند الضغط على زر التشغيل
-            playButton.addEventListener("click", function () {
-                let code = codeInput.value.trim();
-                let postId = playButton.getAttribute("data-post-id");
+                        // إضافة الـ iframe إلى التدوينة
+                        element.innerHTML = "";
+                        element.appendChild(iframeContainer);
 
-                if (!code) {
-                    errorMessage.textContent = "❌ يرجى إدخال الكود!";
-                    errorMessage.style.display = "block";
-                    return;
-                }
-
-                let url = "https://script.google.com/macros/s/AKfycbx2aHwWWh7WKW1U0znD8Ei_FSsj8fhSZJhauMcJt5rPoJ5L4YvQV8rYMLR-Ca9s3Xij5w/exec";
-                let params = `?post_id=${postId}&code=${code}`;
-
-                fetch(url + params)
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.status === "Success") {
-                            let videoUrl = data.videoUrl; // الرابط الذي تم جلبه من العمود 11
-                            let iframe = document.createElement("iframe");
-                            iframe.src = videoUrl;
-                            iframe.width = "560";
-                            iframe.height = "315";
-                            iframe.allowFullscreen = true;
-                            videoContainer.appendChild(iframe);
-                            iframe.style.display = "block";
-                            codeInput.style.display = "none";
-                            playButton.style.display = "none";
-                            errorMessage.style.display = "none";
-                        } else {
-                            errorMessage.textContent = data.message;
-                            errorMessage.style.display = "block";
-                        }
-                    })
-                    .catch(error => {
-                        errorMessage.textContent = "❌ خطأ أثناء الاتصال بالسيرفر!";
+                        codeInput.style.display = "none";
+                        submitButton.style.display = "none";
+                        errorMessage.style.display = "none";
+                    } else {
+                        errorMessage.textContent = data.message;
                         errorMessage.style.display = "block";
-                    });
-            });
-
-            videoSliderContainer.appendChild(videoContainer);
-            video.style.display = "none"; // إخفاء الفيديوهات الأصلية
+                    }
+                })
+                .catch(error => {
+                    errorMessage.textContent = "❌ خطأ أثناء الاتصال بالسيرفر!";
+                    errorMessage.style.display = "block";
+                });
         });
-
-        // إنشاء مصغرات الفيديوهات
-        let videoThumbnailsContainer = document.createElement("div");
-        videoThumbnailsContainer.classList.add("video-thumbnails");
-
-        videos.forEach((video, index) => {
-            let thumb = document.createElement("img");
-            thumb.src = "https://img.youtube.com/vi/" + video.src.split("/")[4] + "/0.jpg";
-            thumb.addEventListener("click", function () {
-                videoSliderContainer.querySelectorAll('.video-container').forEach(container => container.classList.remove('active'));
-                videoSliderContainer.querySelectorAll('.video-container')[index].classList.add('active');
-            });
-            videoThumbnailsContainer.appendChild(thumb);
-        });
-
-        videoSliderContainer.appendChild(videoThumbnailsContainer);
-        container.appendChild(videoSliderContainer);
-    }
-
-    postContent.insertBefore(container, postContent.firstChild);
+    });
 });
