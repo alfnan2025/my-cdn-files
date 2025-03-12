@@ -1,0 +1,78 @@
+<iframe src="https://drive.google.com/file/d/1Nwpxa3nM_XUvI1yi474LotkpovMYMgEo/preview" width="100%" height="600px" allow="autoplay"></iframe>
+
+  <style>
+/* طبقة السواد فوق ملف الـ PDF (الزوم أو نافذة عرض PDF) */
+.pdf-container {
+    position: relative;
+    display: inline-block;
+    width: 100%; /* التأكد من عرض الإطار بالكامل */
+    height: 600px; /* تحديد ارتفاع الإطار */
+}
+
+/* إضافة طبقة السواد على الزر الذي يفتح ملف الـ PDF فقط */
+.pdf-container .block-overlay {
+    content: &quot;&quot;;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%; /* تغطي كامل عرض الإطار */
+    height: 100%; /* تغطي كامل ارتفاع الإطار */
+    background: black;
+    opacity: 0.7;
+    z-index: 10;
+    pointer-events: all; /* منع التفاعل مع الطبقة */
+}
+
+/* السماح بالتفاعل مع محتوى الـ iframe */
+.pdf-container iframe {
+    pointer-events: all; /* السماح بالتفاعل مع محتوى الـ iframe (مثل الروابط والأزرار) */
+    width: 100%; /* عرض الإطار بالكامل */
+    height: 100%;  /* تأكيد ارتفاع الإطار ليأخذ كامل المساحة */
+    border: none;
+}
+
+/* تنسيق النص الغامق (إضافة القفل واللون المميز) */
+b {
+    font-weight: bold;
+    color: #ff6600;  /* تغيير اللون إلى برتقالي */
+    background-color: #fff3e6;  /* إضافة خلفية خفيفة */
+    padding: 2px 5px;  /* إضافة بعض الحشو لتحسين الشكل */
+    border-radius: 5px;  /* جعل الزوايا دائرية */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);  /* إضافة تأثير ظل خفيف */
+}
+
+/* إضافة رمز القفل حول النص الغامق */
+b::before {
+    content: &quot;🔒 &quot;;
+}
+
+b::after {
+    content: &quot; 🔒&quot;;
+}
+
+/* تحسين تصميم نافذة إدخال الكود */
+input[type=&quot;text&quot;] {
+    display: block;
+    margin-top: 10px;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 100%;
+}
+
+button {
+    margin-top: 10px;
+    padding: 5px 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+</style>
+
