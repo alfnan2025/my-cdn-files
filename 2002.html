@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تشغيل الفيديو</title>
+    <script>
+        window.onload = function() {
+            var baseURL = "https://drive.google.com/file/d/";
+            var fileID = "1VC-GFtNg8oaAo4vYrpaQ3aOlTB0jEo5J";
+            var preview = "/preview";
+            var fullURL = baseURL + fileID + preview;
+
+            var iframe = document.createElement("iframe");
+            iframe.src = fullURL;
+            iframe.width = "640";
+            iframe.height = "480";
+            iframe.setAttribute("allow", "autoplay; fullscreen");
+            iframe.setAttribute("allowfullscreen", "");
+            iframe.style.border = "none"; // تأكد من إزالة أي حدود قد تعوق العرض
+
+            document.getElementById("video-container").appendChild(iframe);
+        }
+    </script>
+</head>
+<body>
+    <div id="video-container" style="text-align:center; margin-top:20px;"></div>
+</body>
+</html>
