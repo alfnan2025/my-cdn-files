@@ -5,42 +5,46 @@ document.addEventListener("DOMContentLoaded", function () {
     // أضف حدث لكل زر تحقق بشكل منفصل
     verifyButtons.forEach(button => {
         button.addEventListener("click", function () {
-            const modal = this.closest(".payment-modal"); // البحث عن العنصر الأب القريب لكل زر
-            const inputField = modal.querySelector(".payment-code"); // البحث عن حقل الإدخال داخل نفس المودال
-            const errorMessage = modal.querySelector(".error-message"); // البحث عن رسالة الخطأ داخل نفس المودال
+            // البحث عن العناصر داخل نفس المودال الخاص بالزر
+            const modal = this.closest(".payment-modal");
+            const inputField = modal.querySelector(".payment-code");
+            const errorMessage = modal.querySelector(".error-message");
 
             // إخفاء أي رسالة خطأ سابقة
             errorMessage.style.display = "none";
             errorMessage.textContent = "";
 
+            // الحصول على الكود المدخل ومعرّف التدوينة
             const code = inputField.value.trim();
-            const postId = this.getAttribute("data-post-id"); // الحصول على الـ post_id لكل تدوينة
+            const postId = this.getAttribute("data-post-id");
 
+            // التحقق من إدخال الكود
             if (!code) {
                 errorMessage.textContent = "❌ يرجى إدخال الكود.";
                 errorMessage.style.display = "block";
                 return;
             }
 
-        const url = &quot;https://script.google.com/macros/s/AKfycbx9GOXcqxTBzsk5X-ddg3Co3kJMYB-NzMu6N-mDhK0Kut_7hhcGBh53hAUmAqlTNt9Ocw/exec?post_id=&quot; + postId + &quot;&amp;code=&quot; + encodeURIComponent(code);
+            // تجهيز الرابط لاستدعاء API التحقق
+            const url = `https://script.google.com/macros/s/AKfycbx9GOXcqxTBzsk5X-ddg3Co3kJMYB-NzMu6N-mDhK0Kut_7hhcGBh53hAUmAqlTNt9Ocw/exec?post_id=${postId}&code=${encodeURIComponent(code)}`;
 
-
+            // تنفيذ الطلب
             fetch(url)
                 .then(response => response.json())
                 .then(data => {
                     if (data.status === "Success") {
-                        // ✅ إخفاء الرسالة عند النجاح
+                        // عند النجاح: إخفاء الرسالة والتوجيه إلى الرابط
                         errorMessage.style.display = "none";
                         errorMessage.textContent = "";
-
-                        // ✅ التوجيه إلى الرابط الصحيح
                         window.location.href = data.url;
                     } else {
+                        // عند الفشل: عرض رسالة الخطأ
                         errorMessage.textContent = data.message;
                         errorMessage.style.display = "block";
                     }
                 })
                 .catch(error => {
+                    // عند حدوث خطأ في الاتصال
                     errorMessage.textContent = "⚠️ حدث خطأ أثناء التحقق، يرجى المحاولة لاحقًا.";
                     errorMessage.style.display = "block";
                     console.error("❌ خطأ:", error);
