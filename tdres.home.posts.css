@@ -1,0 +1,419 @@
+
+  
+  
+  
+
+  
+  
+  
+.category-sidebar {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* توسيط الأزرار داخل الإطار */
+    padding: 15px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1); /* إضافة ظل خفيف للإطار */
+}
+
+.link-btn {
+    display: flex;
+    flex-direction: column;
+    width: 100%; /* ضمان عدم تجاوز المحتوى */
+    gap: 10px; /* تباعد بين الأزرار */
+}
+
+.filter-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%; /* جعل الزر يمتد حسب الحاوية */
+    max-width: 100%; /* التأكد من أنه لا يتجاوز الإطار */
+    background: #FFC107;
+    color: black;
+    padding: 12px;
+    text-align: center;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.filter-btn:hover {
+    background: #e0a800;
+    transform: scale(1.02);
+}
+
+
+.course-container {
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 20px;
+    padding: 20px;
+}
+
+.category-sidebar {
+    width: 250px;
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.category-sidebar h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.filter-btn {
+    display: block;
+    width: 100%;
+    margin: 5px 0;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    background: #007bff;
+    color: #fff;
+    border-radius: 5px;
+    font-size: 14px;
+    text-align: center;
+}
+
+.filter-btn.active {
+    background: #ffcc00;
+    color: #000;
+}
+
+.course-list {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.course-card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background: #fff;
+    padding: 10px;
+    transition: 0.3s;
+    position: relative;
+}
+
+.course-card:hover {
+    transform: scale(1.02);
+}
+
+.course-thumbnail {
+    width: 120px;
+    height: 80px;
+    border-radius: 8px;
+    object-fit: cover;
+    position: relative; /* تفعيل الوضع النسبي للصورة المصغرة */
+}
+
+.course-category {
+    background: #007bff;
+    color: #fff;
+    padding: 4px 10px;
+    font-size: 12px;
+    border-radius: 5px;
+    position: absolute; /* التصنيف يظهر فوق الصورة */
+    bottom: 5px; /* تحديد مكان التصنيف داخل الصورة من الأسفل */
+    left: 5px; /* تحديد المسافة من الجهة اليسرى */
+    z-index: 10;
+}
+
+.course-info {
+    flex: 1;
+}
+
+.course-title {
+    font-size: 16px;
+    font-weight: bold;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.course-meta {
+    font-size: 12px;
+    color: #666;
+}
+
+.course-button {
+    display: inline-block;
+    margin-top: 5px;
+    padding: 6px 12px;
+    background: #ffcc00;
+    color: #000;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 13px;
+}
+
+.course-button:hover {
+    background: #ffaa00;
+}
+
+/* تخصيص عرض المعلومات الخاصة بالسعر والخصم على الصورة */
+.course-price-info {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    display: flex;
+    flex-direction: column;
+}
+
+.course-price-info .course-price,
+.course-price-info .course-old-price,
+.course-price-info .course-free {
+    margin: 2px 0;
+}
+
+.course-price-info .course-price {
+    color: #00ff00;
+}
+
+.course-price-info .course-old-price {
+    color: #ffcc00;
+    text-decoration: line-through;
+}
+
+.course-price-info .course-free {
+    background: #ff0000;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 14px;
+    display: none;
+}
+
+
+
+/* استعلامات الوسائط لتقليص الحجم على الشاشات الصغيرة مع الحفاظ على التنسيق */
+@media (max-width: 768px) {
+    .course-container {
+        padding: 10px;
+        gap: 15px;
+    }
+
+    .category-sidebar {
+        width: 120px; /* تصغير الحجم أكثر */
+        padding: 10px;
+    }
+
+    .course-list {
+        width: calc(100% - 120px); /* تكبير الكورس ليشغل المساحة المتبقية */
+    }
+
+    .filter-btn {
+        font-size: 13px;
+        padding: 8px;
+    }
+
+    .course-card {
+        flex-direction: column;
+        padding: 8px;
+        gap: 10px;
+    }
+
+    .course-thumbnail {
+        width: 100%;
+        height: 180px;
+    }
+
+    .course-title {
+        font-size: 14px;
+        white-space: normal;
+    }
+
+    .course-meta {
+        font-size: 11px;
+    }
+
+    .course-button {
+        font-size: 12px;
+        padding: 5px 10px;
+    }
+}
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+@media (max-width: 480px) {
+    .course-container {
+        padding: 5px;
+        gap: 10px;
+    }
+
+    .category-sidebar {
+        width: 100px; /* تصغير الحجم أكثر */
+        padding: 8px;
+    }
+
+    .course-list {
+        width: calc(100% - 100px); /* تكبير الكورس ليشغل المساحة المتبقية */
+    }
+
+    .filter-btn {
+        font-size: 12px;
+        padding: 6px;
+    }
+
+    .course-card {
+        padding: 6px;
+        gap: 8px;
+    }
+
+    .course-thumbnail {
+        width: 100%;
+        height: 160px;
+    }
+
+    .course-title {
+        font-size: 12px;
+    }
+
+    .course-meta {
+        font-size: 10px;
+    }
+
+    .course-button {
+        font-size: 11px;
+        padding: 4px 8px;
+    }
+}
+
+/* تصميم خانة الكود */
+.payment-modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.9); /* لون خلفية نصف شفاف */
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 400px; /* الحد الأقصى للعرض */
+    width: 80%; /* عرض بنسبة 80% من حجم الشاشة */
+    height: auto; /* العرض يتناسب مع المحتوى */
+}
+
+.course-category {
+    display: none;
+}
+
+.payment-code {
+    padding: 8px;
+    font-size: 14px;
+    width: 100%;
+    max-width: 300px; /* الحد الأقصى لعرض المدخل */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* تعديل الزر لإرجاعه للموقع الأصلي في وسط التدوينة */
+.verify-code-btn {
+    padding: 8px 12px;
+    background: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-size: 14px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+  .error-message {
+    color: red;
+    display: none;
+    font-size: 12px;
+}
+.verify-code-btn:hover {
+    background: #218838;
+}
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  @media (max-width: 768px) {
+    .payment-modal {
+        width: 90%; /* عرض أكبر على الشاشات الصغيرة */
+        max-width: 350px; /* الحد الأقصى للعرض على الشاشات الصغيرة */
+    }
+
+    .verify-code-btn {
+        padding: 6px 10px;
+        font-size: 12px;
+    }
+
+    .payment-code {
+        font-size: 12px;
+        padding: 6px;
+    }
+}
+
+@media (max-width: 480px) {
+    .payment-modal {
+        width: 95%; /* عرض أكبر على الشاشات الصغيرة جد&#1611;ا */
+        max-width: 320px; /* الحد الأقصى للعرض على الشاشات الصغيرة جد&#1611;ا */
+    }
+
+    .verify-code-btn {
+        padding: 5px 8px;
+        font-size: 12px;
+    }
+
+    .payment-code {
+        font-size: 12px;
+        padding: 5px;
+    }
+}
+
+  
+  body:has(form[action*=&quot;search&quot;]) .category-sidebar {
+    display: none !important;
+}
