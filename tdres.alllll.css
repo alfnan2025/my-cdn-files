@@ -1,0 +1,979 @@
+
+.post-title {
+    display: none;
+}
+.post-footer-line {
+    display: none;
+}
+.blog-pager {
+  display: none;
+}
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            direction: rtl;
+            text-align: right;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        .header {
+            background-color: #fff;
+            padding: 50px 0;
+            text-align: center;
+        }
+
+        .header img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .sections {
+            padding: 40px 0;
+            background: #f1f1f1;
+            text-align: center;
+        }
+
+        .services {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .service-box {
+            background: #fff;
+            margin: 15px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 30%;
+        }
+
+        .faq {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .faq-item {
+            border-bottom: 1px solid #ddd;
+            padding: 10px 0;
+        }
+
+    
+        .faq-container {
+            margin: auto;
+            width: 80%;
+        }
+
+        .faq-item button {
+            width: 100%;
+            text-align: right;
+            padding: 10px;
+            border: none;
+            background: #f1f1f1;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .faq-item button:hover {
+            background: #ddd;
+        }
+
+        .faq-content {
+            display: none;
+            padding: 10px;
+            background: #fff;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .faq-item.active .faq-content {
+            display: block;
+        }
+
+body.index .post-body.entry-content {
+    display: none !important;
+}
+
+.feed-links {
+    display: none !important;
+}
+  /* تصميم الهيدر */
+    .header-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 20px;
+        background: #009687;
+        border-bottom: 2px solid #ddd;
+        flex-wrap: wrap;
+    }
+
+    /* تصميم اللوجو */
+    .logo {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+    }
+
+    .logo img {
+        width: 150px; /* حجم ثابت للوجو */
+        height: auto;
+        max-height: 50px; /* لا يزيد ارتفاع الصورة عن 50px */
+    }
+
+    /* تصميم البحث */
+    .search-box {
+        display: flex;
+        align-items: center;
+        background: #f5f5f5;
+        border-radius: 50px;
+        padding: 5px 15px;
+        width: 100%;
+        max-width: 400px;
+        transition: 0.3s ease-in-out;
+    }
+
+    .search-box select, 
+    .search-box input {
+        border: none;
+        outline: none;
+        background: transparent;
+        font-size: 16px;
+        padding: 5px;
+    }
+
+    .search-box select {
+        cursor: pointer;
+    }
+
+    .search-box input {
+        flex: 1;
+    }
+
+    .search-box button {
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 18px;
+        color: #666;
+    }
+
+    /* تكبير حجم البحث على الكمبيوتر */
+    @media (min-width: 1024px) {
+        .search-box {
+            max-width: 600px; /* يجعل البحث أوسع على الكمبيوتر */
+        }
+    }
+
+    /* استجابة التصميم للجوال */
+    @media (max-width: 768px) {
+        .header-container {
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 10px;
+        }
+
+        .search-box {
+            width: 90%;
+            max-width: 400px;
+        }
+    }
+
+  
+  
+  
+
+  
+  
+  
+.category-sidebar {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* توسيط الأزرار داخل الإطار */
+    padding: 15px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1); /* إضافة ظل خفيف للإطار */
+}
+
+.link-btn {
+    display: flex;
+    flex-direction: column;
+    width: 100%; /* ضمان عدم تجاوز المحتوى */
+    gap: 10px; /* تباعد بين الأزرار */
+}
+
+.filter-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%; /* جعل الزر يمتد حسب الحاوية */
+    max-width: 100%; /* التأكد من أنه لا يتجاوز الإطار */
+    background: #FFC107;
+    color: black;
+    padding: 12px;
+    text-align: center;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.filter-btn:hover {
+    background: #e0a800;
+    transform: scale(1.02);
+}
+
+
+.course-container {
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 20px;
+    padding: 20px;
+}
+
+.category-sidebar {
+    width: 250px;
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.category-sidebar h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.filter-btn {
+    display: block;
+    width: 100%;
+    margin: 5px 0;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    background: #007bff;
+    color: #fff;
+    border-radius: 5px;
+    font-size: 14px;
+    text-align: center;
+}
+
+.filter-btn.active {
+    background: #ffcc00;
+    color: #000;
+}
+
+.course-list {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.course-card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background: #fff;
+    padding: 10px;
+    transition: 0.3s;
+    position: relative;
+}
+
+.course-card:hover {
+    transform: scale(1.02);
+}
+
+.course-thumbnail {
+    width: 120px;
+    height: 80px;
+    border-radius: 8px;
+    object-fit: cover;
+    position: relative; /* تفعيل الوضع النسبي للصورة المصغرة */
+}
+
+.course-category {
+    background: #007bff;
+    color: #fff;
+    padding: 4px 10px;
+    font-size: 12px;
+    border-radius: 5px;
+    position: absolute; /* التصنيف يظهر فوق الصورة */
+    bottom: 5px; /* تحديد مكان التصنيف داخل الصورة من الأسفل */
+    left: 5px; /* تحديد المسافة من الجهة اليسرى */
+    z-index: 10;
+}
+
+.course-info {
+    flex: 1;
+}
+
+.course-title {
+    font-size: 16px;
+    font-weight: bold;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.course-meta {
+    font-size: 12px;
+    color: #666;
+}
+
+.course-button {
+    display: inline-block;
+    margin-top: 5px;
+    padding: 6px 12px;
+    background: #ffcc00;
+    color: #000;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 13px;
+}
+
+.course-button:hover {
+    background: #ffaa00;
+}
+
+/* تخصيص عرض المعلومات الخاصة بالسعر والخصم على الصورة */
+.course-price-info {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    display: flex;
+    flex-direction: column;
+}
+
+.course-price-info .course-price,
+.course-price-info .course-old-price,
+.course-price-info .course-free {
+    margin: 2px 0;
+}
+
+.course-price-info .course-price {
+    color: #00ff00;
+}
+
+.course-price-info .course-old-price {
+    color: #ffcc00;
+    text-decoration: line-through;
+}
+
+.course-price-info .course-free {
+    background: #ff0000;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 14px;
+    display: none;
+}
+
+
+
+/* استعلامات الوسائط لتقليص الحجم على الشاشات الصغيرة مع الحفاظ على التنسيق */
+@media (max-width: 768px) {
+    .course-container {
+        padding: 10px;
+        gap: 15px;
+    }
+
+    .category-sidebar {
+        width: 120px; /* تصغير الحجم أكثر */
+        padding: 10px;
+    }
+
+    .course-list {
+        width: calc(100% - 120px); /* تكبير الكورس ليشغل المساحة المتبقية */
+    }
+
+    .filter-btn {
+        font-size: 13px;
+        padding: 8px;
+    }
+
+    .course-card {
+        flex-direction: column;
+        padding: 8px;
+        gap: 10px;
+    }
+
+    .course-thumbnail {
+        width: 100%;
+        height: 180px;
+    }
+
+    .course-title {
+        font-size: 14px;
+        white-space: normal;
+    }
+
+    .course-meta {
+        font-size: 11px;
+    }
+
+    .course-button {
+        font-size: 12px;
+        padding: 5px 10px;
+    }
+}
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+@media (max-width: 480px) {
+    .course-container {
+        padding: 5px;
+        gap: 10px;
+    }
+
+    .category-sidebar {
+        width: 100px; /* تصغير الحجم أكثر */
+        padding: 8px;
+    }
+
+    .course-list {
+        width: calc(100% - 100px); /* تكبير الكورس ليشغل المساحة المتبقية */
+    }
+
+    .filter-btn {
+        font-size: 12px;
+        padding: 6px;
+    }
+
+    .course-card {
+        padding: 6px;
+        gap: 8px;
+    }
+
+    .course-thumbnail {
+        width: 100%;
+        height: 160px;
+    }
+
+    .course-title {
+        font-size: 12px;
+    }
+
+    .course-meta {
+        font-size: 10px;
+    }
+
+    .course-button {
+        font-size: 11px;
+        padding: 4px 8px;
+    }
+}
+
+/* تصميم خانة الكود */
+.payment-modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.9); /* لون خلفية نصف شفاف */
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 400px; /* الحد الأقصى للعرض */
+    width: 80%; /* عرض بنسبة 80% من حجم الشاشة */
+    height: auto; /* العرض يتناسب مع المحتوى */
+}
+
+.course-category {
+    display: none;
+}
+
+.payment-code {
+    padding: 8px;
+    font-size: 14px;
+    width: 100%;
+    max-width: 300px; /* الحد الأقصى لعرض المدخل */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* تعديل الزر لإرجاعه للموقع الأصلي في وسط التدوينة */
+.verify-code-btn {
+    padding: 8px 12px;
+    background: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-size: 14px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+  .error-message {
+    color: red;
+    display: none;
+    font-size: 12px;
+}
+.verify-code-btn:hover {
+    background: #218838;
+}
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  @media (max-width: 768px) {
+    .payment-modal {
+        width: 90%; /* عرض أكبر على الشاشات الصغيرة */
+        max-width: 350px; /* الحد الأقصى للعرض على الشاشات الصغيرة */
+    }
+
+    .verify-code-btn {
+        padding: 6px 10px;
+        font-size: 12px;
+    }
+
+    .payment-code {
+        font-size: 12px;
+        padding: 6px;
+    }
+}
+
+@media (max-width: 480px) {
+    .payment-modal {
+        width: 95%; /* عرض أكبر على الشاشات الصغيرة جد&#1611;ا */
+        max-width: 320px; /* الحد الأقصى للعرض على الشاشات الصغيرة جد&#1611;ا */
+    }
+
+    .verify-code-btn {
+        padding: 5px 8px;
+        font-size: 12px;
+    }
+
+    .payment-code {
+        font-size: 12px;
+        padding: 5px;
+    }
+}
+
+  
+  body:has(form[action*=&quot;search&quot;]) .category-sidebar {
+    display: none !important;
+}
+.post-body.entry-content .container {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: auto;
+  }
+
+  .post-body.entry-content .slider-container {
+    max-width: 500px;
+    margin: 0 10px;
+    text-align: center;
+    position: relative;
+  }
+
+  .post-body.entry-content .main-image {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+  }
+
+  .post-body.entry-content .thumbnails {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+  }
+
+  .post-body.entry-content .thumbnails img {
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    transition: 0.3s;
+  }
+
+  .post-body.entry-content .thumbnails img:hover {
+    border-color: #333;
+  }
+
+  .post-body.entry-content .video-slider-container {
+    margin: 20px 10px;
+    text-align: center;
+    max-width: 100%;
+    position: relative;
+  }
+
+  .post-body.entry-content .video-container {
+    display: none;
+    margin: 0 auto;
+    border: 2px solid #ffcc00;
+    border-radius: 5px;
+    box-shadow: 0 0 20px rgba(255, 204, 0, 0.5);
+    position: relative;
+    width: 100%;
+    height: auto;
+  }
+
+  .post-body.entry-content .video-container.active {
+    display: block;
+  }
+
+  .post-body.entry-content .video-container h3 {
+    background-color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: #333;
+    font-size: 16px;
+    font-weight: bold;
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .post-body.entry-content .video-container iframe {
+    width: 100%;
+    height: 315px;
+    border: none;
+    border-radius: 5px;
+  }
+
+  .post-body.entry-content .video-thumbnails {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+  }
+
+  .post-body.entry-content .video-thumbnails img {
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    transition: 0.3s;
+  }
+
+  .post-body.entry-content .video-thumbnails img:hover {
+    border-color: #333;
+  }
+
+  .separator {
+    display: none;
+  }
+
+  @media (max-width: 768px) {
+    .post-body.entry-content .container {
+      flex-direction: column;
+    }
+  }
+
+  @media (min-width: 769px) {
+    .post-body.entry-content .container {
+      flex-wrap: wrap;
+    }
+
+    .post-body.entry-content .slider-container,
+    .post-body.entry-content .video-slider-container {
+      flex: 1 1 45%;
+    }
+  }
+  
+  .video-container {
+    position: relative;
+}
+
+.video-container::after {
+    content: &quot;&quot;;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 90px; /* زيادة العرض قليلا&#1611; */
+    height: 70px; /* زيادة الارتفاع لتغطية الزر بالكامل */
+    background: black;
+    opacity: 0.7;
+    z-index: 10;
+    pointer-events: all; /* منع النقر على الزر */
+}
+
+/* طبقة السواد فوق ملف الـ PDF (الزوم أو نافذة عرض PDF) */
+.pdf-container {
+    position: relative;
+    display: inline-block;
+    width: 100%; /* التأكد من عرض الإطار بالكامل */
+    height: 600px; /* تحديد ارتفاع الإطار */
+}
+
+/* إضافة طبقة السواد على الزر الذي يفتح ملف الـ PDF فقط */
+.pdf-container .block-overlay {
+    content: &quot;&quot;;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 120px !important; /* زيادة العرض باستخدام !important */
+    height: 120px !important; /* زيادة الارتفاع باستخدام !important */
+    background: black;
+    opacity: 0.7;
+    z-index: 10;
+    pointer-events: all; /* منع التفاعل مع الطبقة */
+}
+    
+    
+    
+    
+    
+    /* الطبقة السوداء على الهاتف فقط */
+@media screen and (max-width: 600px) {
+    .pdf-container .block-overlay {
+        content: &quot;&quot;;
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 65px !important; /* تصغير العرض على الهواتف */
+        height: 65px !important; /* تصغير الارتفاع على الهواتف */
+        background: black;
+        opacity: 0.7;
+        z-index: 10;
+        pointer-events: all; /* منع التفاعل مع الطبقة */
+    }
+}
+
+    
+    
+    
+    
+    
+
+/* السماح بالتفاعل مع محتوى الـ iframe */
+.pdf-container iframe {
+    pointer-events: all; /* السماح بالتفاعل مع محتوى الـ iframe (مثل الروابط والأزرار) */
+    width: 100%; /* عرض الإطار بالكامل */
+    height: 100%;  /* تأكيد ارتفاع الإطار ليأخذ كامل المساحة */
+    border: none;
+}
+
+/* تنسيق النص الغامق (إضافة القفل واللون المميز) */
+b {
+    font-weight: bold;
+    color: #ff6600;  /* تغيير اللون إلى برتقالي */
+    background-color: #fff3e6;  /* إضافة خلفية خفيفة */
+    padding: 2px 5px;  /* إضافة بعض الحشو لتحسين الشكل */
+    border-radius: 5px;  /* جعل الزوايا دائرية */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);  /* إضافة تأثير ظل خفيف */
+}
+
+/* إضافة رمز القفل حول النص الغامق */
+b::before {
+    content: &quot;🔒 &quot;;
+}
+
+b::after {
+    content: &quot; 🔒&quot;;
+}
+
+/* تحسين تصميم نافذة إدخال الكود */
+input[type=&quot;text&quot;] {
+    display: block;
+    margin-top: 10px;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 100%;
+}
+
+button {
+    margin-top: 10px;
+    padding: 5px 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+/* تخصيص الـ iframe ليكون متجاوب&#1611;ا */
+.blog-posts.hfeed .pdf-container {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    height: 600px;
+    max-width: 100%;
+}
+
+.blog-posts.hfeed .pdf-container iframe {
+    pointer-events: all;
+    width: 100%; /* جعله يأخذ العرض الكامل */
+    height: 100%; /* جعله يتكيف مع الحجم */
+    border: none;
+    max-width: 100%; /* لضمان عدم تجاوز عرض الشاشة */
+    box-sizing: border-box; /* لضمان عدم تجاوز الحشو */
+}
+
+/* الحفاظ على تنسيق النص المائل */
+.blog-posts.hfeed i {
+    font-style: italic;
+    color: #ff6600;  /* تغيير اللون إلى برتقالي */
+    background-color: #fff3e6;  /* إضافة خلفية خفيفة */
+    padding: 2px 5px;  /* إضافة بعض الحشو لتحسين الشكل */
+    border-radius: 5px;  /* جعل الزوايا دائرية */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);  /* إضافة تأثير ظل خفيف */
+}
+
+/* إضافة رمز القفل حول النص المائل داخل التدوينات */
+.blog-posts.hfeed i::before {
+    content: &quot;🔒 &quot;;
+}
+
+.blog-posts.hfeed i::after {
+    content: &quot; 🔒&quot;;
+}
+
+/* تنسيق نافذة إدخال الكود داخل التدوينات */
+.blog-posts.hfeed input[type=&quot;text&quot;] {
+    display: block;
+    margin-top: 10px;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 100%;
+}
+
+.blog-posts.hfeed button {
+    margin-top: 10px;
+    padding: 5px 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.blog-posts.hfeed button:hover {
+    background-color: #45a049;
+}
+
+/* طبقة السواد فوق الزر الذي يفتح الرابط داخل التدوينات */
+.blog-posts.hfeed .block-overlay {
+    content: &quot;&quot;;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 60px; /* زيادة العرض لتغطية الزر بالكامل */
+    height: 60px; /* زيادة الارتفاع لتغطية الزر بالكامل */
+    background: black;
+    opacity: 0.7;
+    z-index: 10;
+    pointer-events: all; /* منع التفاعل مع الطبقة */
+}
+/* تثبيت الفوتر في الأسفل */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.footer {
+    background: #009688;
+    color: #fff;
+    text-align: center;
+    padding: 15px 0;
+    font-size: 14px;
+    margin-top: auto; /* يدفع الفوتر للأسفل */
+    border-top: 3px solid #00796b;
+}
+
+.footer p {
+    margin: 5px 0;
+    font-weight: bold;
+}
+
+/* تنسيق روابط السوشيال ميديا */
+.footer .social-icons {
+    margin-top: 10px;
+}
+
+.footer a {
+    display: inline-block;
+    margin: 5px;
+    font-size: 20px;
+    color: #fff;
+    transition: transform 0.3s, color 0.3s;
+}
+
+/* تأثير التحريك عند التمرير */
+.footer a:hover {
+    transform: scale(1.1);
+    color: #ffeb3b;
+}
+
+/* استجابة الهاتف */
+@media (max-width: 600px) {
+    .footer p {
+        font-size: 12px;
+    }
+    .footer a {
+        font-size: 18px;
+    }
+}
