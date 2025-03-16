@@ -1,4 +1,3 @@
-
 document.addEventListener("DOMContentLoaded", function () {
     // التحقق من أن الصفحة الحالية هي الصفحة الرئيسية
     let blogUrl = window.location.origin; // رابط المدونة الأساسي
@@ -26,7 +25,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function updateCountdown() {
         const now = new Date();
-        const distance = endDate - now;
+        let distance = endDate - now;
+
+        if (distance < 0) {
+            endDate = new Date();
+            endDate.setDate(endDate.getDate() + 3); // إعادة ضبط العداد
+            localStorage.setItem("endDate", endDate);
+            distance = endDate - now; // تحديث المسافة الزمنية بعد إعادة التعيين
+        }
 
         const days = Math.floor(distance / (1000 * 60 * 60 * 24));
         const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
@@ -34,9 +40,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
         const countdownElement = document.getElementById("countdown");
-        countdownElement.innerHTML = distance < 0
-            ? "انتهت التخفيضات"
-            : `تنتهي التخفيضات بعد ${days} أيام و ${hours} ساعات و ${minutes} دقائق و ${seconds} ثواني`;
+        countdownElement.innerHTML = `تنتهي التخفيضات بعد ${days} أيام و ${hours} ساعات و ${minutes} دقائق و ${seconds} ثواني`;
     }
 
     setInterval(updateCountdown, 1000);
@@ -105,4 +109,3 @@ document.addEventListener("DOMContentLoaded", function () {
     fetchProducts();
     updateCountdown();
 });
-
