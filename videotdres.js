@@ -6,31 +6,31 @@ document.addEventListener("DOMContentLoaded", function() {
 
     if (videos.length === 0) return;
 
-    let videoSliderContainer = document.createElement("div");
-    videoSliderContainer.classList.add("video-slider-container");
+    let videoContainer = document.createElement("div");
+    videoContainer.classList.add("video-container");
 
     videos.forEach((video, index) => {
-        let videoContainer = document.createElement("div");
-        videoContainer.classList.add("video-container");
+        let videoWrapper = document.createElement("div");
+        videoWrapper.classList.add("video-wrapper");
 
         let videoTitle = document.createElement("h3");
         videoTitle.textContent = "فيديو المحاضرة " + (index + 1);
-        videoContainer.appendChild(videoTitle);
+        videoWrapper.appendChild(videoTitle);
 
         // إدخال الكود
         let codeInput = document.createElement("input");
         codeInput.type = "text";
         codeInput.placeholder = "أدخل كود الفيديو هنا";
-        videoContainer.appendChild(codeInput);
+        videoWrapper.appendChild(codeInput);
 
         let playButton = document.createElement("button");
         playButton.textContent = "تشغيل الفيديو";
-        videoContainer.appendChild(playButton);
+        videoWrapper.appendChild(playButton);
 
         let errorMessage = document.createElement("span");
         errorMessage.style.color = "red";
         errorMessage.style.display = "none";
-        videoContainer.appendChild(errorMessage);
+        videoWrapper.appendChild(errorMessage);
 
         let postId = document.querySelector("meta[itemprop='postId']").content;
 
@@ -54,12 +54,10 @@ document.addEventListener("DOMContentLoaded", function() {
                         let videoUrl = data.videoUrl; // الرابط الذي تم جلبه من العمود 11
                         let iframe = document.createElement("iframe");
                         iframe.src = videoUrl;
-                        iframe.width = "560";
-                        iframe.height = "315";
                         iframe.allowFullscreen = true;
+                        iframe.classList.add("full-width-video");
 
-                        videoContainer.appendChild(iframe);
-                        iframe.style.display = "block";
+                        videoWrapper.appendChild(iframe);
                         codeInput.style.display = "none";
                         playButton.style.display = "none";
                         errorMessage.style.display = "none";
@@ -74,9 +72,36 @@ document.addEventListener("DOMContentLoaded", function() {
                 });
         });
 
-        videoSliderContainer.appendChild(videoContainer);
+        videoContainer.appendChild(videoWrapper);
         video.style.display = "none"; // إخفاء الفيديو الأصلي
     });
 
-    postContent.insertBefore(videoSliderContainer, postContent.firstChild);
+    postContent.insertBefore(videoContainer, postContent.firstChild);
 });
+
+// ضبط الفيديو ليكون بحجم الشاشة
+let style = document.createElement("style");
+style.innerHTML = `
+    .video-container {
+        width: 100%;
+        max-width: 100%;
+    }
+    .video-wrapper {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .full-width-video {
+        width: 100%;
+        height: 70vh; /* نسبة ارتفاع الفيديو 70% من الشاشة */
+        max-width: 100%;
+    }
+    input[type="text"], button {
+        display: block;
+        width: 100%;
+        max-width: 400px;
+        margin: 10px auto;
+        padding: 10px;
+        font-size: 16px;
+    }
+`;
+document.head.appendChild(style);
