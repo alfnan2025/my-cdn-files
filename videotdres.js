@@ -69,42 +69,44 @@ document.addEventListener("DOMContentLoaded", function() {
             videoContainer.appendChild(errorMessage);
 
             // حدث عند الضغط على زر التشغيل
-          playButton.addEventListener("click", function () {
-    let code = codeInput.value.trim();
-    let postId = playButton.getAttribute("data-post-id");
+            playButton.addEventListener("click", function () {
+                let code = codeInput.value.trim();
+                let postId = playButton.getAttribute("data-post-id");
 
-    if (!code) {
-        errorMessage.textContent = "❌ يرجى إدخال الكود!";
-        errorMessage.style.display = "block";
-        return;
-    }
+                if (!code) {
+                    errorMessage.textContent = "❌ يرجى إدخال الكود!";
+                    errorMessage.style.display = "block";
+                    return;
+                }
 
-    let url = "https://script.google.com/macros/s/AKfycbxxO1_Y99tfntPg0zhHAV0m6OUj_n7X9PcvpGiBTFImJSaBoVC4M3F7k_0x6_yRqCOppA/exec";
-    let params = `?post_id=${postId}&code=${code}`;
+                let url = "https://script.google.com/macros/s/AKfycbxxO1_Y99tfntPg0zhHAV0m6OUj_n7X9PcvpGiBTFImJSaBoVC4M3F7k_0x6_yRqCOppA/exec";
+                let params = `?post_id=${postId}&code=${code}`;
 
-    fetch(url + params)
-        .then(response => response.json())
-        .then(data => {
-            if (data.status === "Success") {
-                let videoUrl = data.videoUrl; // الرابط الذي تم جلبه من جوجل شيت
-                let iframe = document.createElement("iframe");
-                iframe.src = videoUrl;
-                iframe.allowFullscreen = true;
-                iframe.classList.add("full-video");
-
-                // حذف الإدخال وزر التشغيل
-                videoContainer.innerHTML = "";
-                videoContainer.appendChild(iframe);
-            } else {
-                errorMessage.textContent = data.message;
-                errorMessage.style.display = "block";
-            }
-        })
-        .catch(error => {
-            errorMessage.textContent = "❌ خطأ أثناء الاتصال بالسيرفر!";
-            errorMessage.style.display = "block";
-        });
-});
+                fetch(url + params)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.status === "Success") {
+                            let videoUrl = data.videoUrl; // الرابط الذي تم جلبه من العمود 11
+                            let iframe = document.createElement("iframe");
+                            iframe.src = videoUrl;
+                            iframe.width = "560";
+                            iframe.height = "315";
+                            iframe.allowFullscreen = true;
+                            videoContainer.appendChild(iframe);
+                            iframe.style.display = "block";
+                            codeInput.style.display = "none";
+                            playButton.style.display = "none";
+                            errorMessage.style.display = "none";
+                        } else {
+                            errorMessage.textContent = data.message;
+                            errorMessage.style.display = "block";
+                        }
+                    })
+                    .catch(error => {
+                        errorMessage.textContent = "❌ خطأ أثناء الاتصال بالسيرفر!";
+                        errorMessage.style.display = "block";
+                    });
+            });
 
             videoSliderContainer.appendChild(videoContainer);
             video.style.display = "none"; // إخفاء الفيديوهات الأصلية
