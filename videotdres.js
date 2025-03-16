@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", function() {
             let postId = document.querySelector("meta[itemprop='postId']").content; // استخراج post_id الصحيح
 
             let videoTitle = document.createElement("h3");
-            videoTitle.textContent = "فيديو الدرس " + (index + 1);
+            videoTitle.textContent = "فيديو المحاضرة " + (index + 1);
             videoContainer.appendChild(videoTitle);
 
             // إدخال الكود
