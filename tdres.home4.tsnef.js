@@ -24,16 +24,6 @@ document.addEventListener("DOMContentLoaded", function () {
         return numA - numB;
     });
 
-    // ✅ إزالة أي زر "عرض الكل" موجود مسبقًا
-    let existingAllBtn = categorySidebar.querySelector('[data-category="all"]');
-    if (!existingAllBtn) {
-        let allBtn = document.createElement("button");
-        allBtn.classList.add("filter-btn", "active");
-        allBtn.innerText = "عرض الكل";
-        allBtn.setAttribute("data-category", "all");
-        categorySidebar.insertBefore(allBtn, categorySidebar.firstChild);
-    }
-
     // ✅ إضافة التصنيفات إلى القائمة الجانبية بعد الترتيب
     sortedCategories.forEach(category => {
         let btn = document.createElement("button");
