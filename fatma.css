@@ -1,0 +1,424 @@
+
+
+.post-title {
+    display: none;
+}
+.post-footer-line {
+    display: none;
+}
+.blog-pager {
+  display: none;
+}
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            direction: rtl;
+            text-align: right;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        .header {
+            background-color: #fff;
+            padding: 50px 0;
+            text-align: center;
+        }
+
+        .header img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .sections {
+            padding: 40px 0;
+            background: #f1f1f1;
+            text-align: center;
+        }
+
+        .services {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .service-box {
+            background: #fff;
+            margin: 15px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 30%;
+        }
+
+        .faq {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .faq-item {
+            border-bottom: 1px solid #ddd;
+            padding: 10px 0;
+        }
+
+    
+        .faq-container {
+            margin: auto;
+            width: 80%;
+        }
+
+        .faq-item button {
+            width: 100%;
+            text-align: right;
+            padding: 10px;
+            border: none;
+            background: #f1f1f1;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .faq-item button:hover {
+            background: #ddd;
+        }
+
+        .faq-content {
+            display: none;
+            padding: 10px;
+            background: #fff;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .faq-item.active .faq-content {
+            display: block;
+        }
+
+body.index .post-body.entry-content {
+    display: none !important;
+}
+
+.feed-links {
+    display: none !important;
+}
+  body {
+      background-color: #f4f4f4;
+    }
+
+    .dark-blue-header {
+      width: 100%;
+      background-color: #1D4ED8;
+      color: white;
+      padding: 5px 0;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      transition: box-shadow 0.3s ease;
+      min-height: 100px; /* تثبيت ارتفاع الهيدر */
+    }
+
+    .dark-blue-header:hover {
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .dark-blue-header .logo-link img {
+      height: 70px; /* تكبير اللوجو لكن مع ضبط الارتفاع */
+      width: auto;
+      margin-bottom: 5px;
+      transition: transform 0.3s ease;
+    }
+
+    .dark-blue-header .logo-link:hover img {
+      transform: scale(1.1);
+      opacity: 0.8;
+    }
+
+    .dark-blue-header h1 {
+      font-size: 1.1rem;
+      margin: 0;
+      margin-top: 4px;
+      transition: color 0.3s ease;
+    }
+
+    .dark-blue-header:hover h1 {
+      color: #ffd700;
+    }
+/* الحاوية العامة */
+.course-container {
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 20px;
+    padding: 20px;
+}
+
+/* الشريط الجانبي للفلاتر */
+.category-sidebar {
+    width: 250px;
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.category-sidebar h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.link-btn {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.filter-btn {
+    background: #007bff;
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+.filter-btn.active {
+    background: #ffcc00;
+    color: #000;
+}
+
+/* قائمة الكورسات بشكل شبكي */
+.course-list {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+/* بطاقة الكورس */
+.course-card {
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    position: relative;
+    transition: 0.3s;
+}
+
+.course-thumbnail {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+    position: relative;
+}
+
+.course-info {
+    margin-top: 10px;
+}
+
+.course-title {
+    font-size: 16px;
+    font-weight: bold;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.course-meta {
+    font-size: 12px;
+    color: #666;
+}
+
+.course-button {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 6px 12px;
+    background: #ffcc00;
+    color: #000;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 13px;
+}
+
+.course-button:hover {
+    background: #ffaa00;
+}
+
+/* التصنيف والسعر فوق الصورة */
+.course-category {
+    background: #007bff;
+    color: #fff;
+    padding: 4px 10px;
+    font-size: 12px;
+    border-radius: 5px;
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    z-index: 10;
+    display: none;
+}
+
+.course-price-info {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    display: flex;
+    flex-direction: column;
+}
+
+.course-price-info .course-price {
+    color: #00ff00;
+}
+
+.course-price-info .course-old-price {
+    color: #ffcc00;
+    text-decoration: line-through;
+}
+
+.course-price-info .course-free {
+    background: #ff0000;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 14px;
+    display: none;
+}
+
+/* المودال */
+.payment-modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 80%;
+}
+
+.payment-code {
+    padding: 8px;
+    font-size: 14px;
+    width: 100%;
+    max-width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.verify-code-btn {
+    padding: 8px 12px;
+    background: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-size: 14px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.verify-code-btn:hover {
+    background: #218838;
+}
+
+.error-message {
+    color: red;
+    display: none;
+    font-size: 12px;
+}
+
+/* استجابة للشاشات الصغيرة */
+@media (max-width: 768px) {
+    .course-container {
+        flex-direction: column;
+    }
+
+    .category-sidebar {
+        width: 100%;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .filter-btn {
+        flex: 1;
+        min-width: 100px;
+    }
+
+    .course-list {
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    }
+
+    .payment-modal {
+        width: 90%;
+        max-width: 350px;
+    }
+
+    .verify-code-btn {
+        padding: 6px 10px;
+        font-size: 12px;
+    }
+
+    .payment-code {
+        font-size: 12px;
+        padding: 6px;
+    }
+}
+
+@media (max-width: 480px) {
+    .course-list {
+        grid-template-columns: 1fr;
+    }
+
+    .payment-modal {
+        width: 95%;
+        max-width: 320px;
+    }
+
+    .verify-code-btn {
+        padding: 5px 8px;
+        font-size: 12px;
+    }
+
+    .payment-code {
+        font-size: 12px;
+        padding: 5px;
+    }
+}
+
+/* إخفاء الشريط الجانبي أثناء البحث */
+body:has(form[action*=&quot;search&quot;]) .category-sidebar {
+    display: none !important;
+}
