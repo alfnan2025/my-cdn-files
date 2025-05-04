@@ -2,7 +2,7 @@
   const responseMessage = document.getElementById('responseMessage');
 
   // رابط Google Apps Script
-  const scriptUrl = "https://script.google.com/macros/s/AKfycbxTRquAza7m1rNDIQICC_GiUl4VgR8fkyl_C9WOdeEk1F6R9kEpjDFBPuXia-CTD8s/exec";
+  const scriptUrl = "https://script.google.com/macros/s/AKfycbwaAA0D8Bx0DkwXUudRW7hE3dR4z0vDoyHPMdxlrXmwYKncpHczYP3AutFyGe6zobXyBA/exec";
 
   form.addEventListener('submit', function(event) {
     event.preventDefault(); // منع الإرسال الافتراضي للنموذج
