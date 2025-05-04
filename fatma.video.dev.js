@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     return;
                 }
 
-                let url = "https://script.google.com/macros/s/AKfycbzhUOWvaqRaZcFjUAU4myCz2SU2qgug-DYjb73JSAvo6cJ0oQkQcB3zvHugDoIOB7uS/exec";
+                let url = "https://script.google.com/macros/s/AKfycbxXtZ7XwdIINQhX6L8hvxMA-U3fr2b1k7pVR8yJuY2AhEBlOrNvlC_8IDadBc8_7a6r/exec";
                 let params = `?post_id=${postId}&code=${code}`;
 
                 fetch(url + params)
